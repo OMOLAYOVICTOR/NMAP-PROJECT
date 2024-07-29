@@ -20,13 +20,17 @@ Essentially, this project utilizes a Cron Job every 10 minutes to trigger nmap f
 
 - Update package manager
 
-```sudo apt update```
+```
+sudo apt update
+```
 
 ![update](image/update.jpg)
 
 - Install apache2 webserver
 
-```sudo apt install apache2```
+```
+sudo apt install apache2
+```
 
 ![sudo-apt-install-apache2](image/sudo-apt-install-apache2.jpg)
 
@@ -34,7 +38,9 @@ Essentially, this project utilizes a Cron Job every 10 minutes to trigger nmap f
 
 - Install php
 
-```sudo apt install php```
+```
+sudo apt install php
+```
 
 ![sudo-apt-install-php](image/sudo-apt-install-php.jpg)
 
@@ -44,7 +50,9 @@ Nmap, short for "Network Mapper," is an open-source network scanning tool used f
 
 - Install nmap
 
-```sudo apt install nmap```
+```
+sudo apt install nmap
+```
 
 ![sudo-apt-install-nmap](image/sudo-apt-install-nmap.jpg)
 
@@ -54,21 +62,29 @@ Nmap, short for "Network Mapper," is an open-source network scanning tool used f
 
 - Change Ownership of the '/var/www/html' directory to the user 'ubuntu'
 
-```sudo chown ubuntu /var/www/html```
+```
+sudo chown ubuntu /var/www/html
+```
 
 - Set permissions on the /var/www/html directory for demonstration purposes (not recommended for production)
 
-```sudo chmod 777 /var/www/html```
+```
+sudo chmod 777 /var/www/html
+```
 
 ### Step - 5 : Create a Cronjob that schedules the execution of the nmap command every 10 minutes
 
 - Edit the crontab file
 
-```sudo crontab -e```
+```
+sudo crontab -e
+```
 
 - Add the following line to the crontab file:
 
-```*/10 * * * * nmap <private Ip Address> -oN /var/www/html/nmap.html```
+```
+*/10 * * * * nmap <private Ip Address> -oN /var/www/html/nmap.html
+```
 
 ![editor](image/editor.jpg)
 
@@ -78,11 +94,14 @@ Nmap, short for "Network Mapper," is an open-source network scanning tool used f
 
 - Create 'network.php' file in '/var/www/html' directory
 
-```touch /var/www/html/network.php```
+```
+touch /var/www/html/network.php
+```
 
 - Populate the file with the following PHP script:
 
-```<?php
+```
+<?php
 
 echo "Server Timestamp: ";
 echo date("h:i:sa");
@@ -91,14 +110,19 @@ echo "<pre>";
 include("nmap.html");
 echo "</pre>";
 
-?>```
+?>
+```
 
 
 - Ensure that the nmap.html file exists in the same directory as this PHP script or provide the correct path if located elsewhere. Also, ensure that the web server has permission to read the nmap.html file and that PHP is properly configured on your server.
-
 
 ### Step-7 : View the output from your browser 
 
 - Access <public_ip_address>/network.php to view the generated output. 
 
 - Note that it might take up to 90 seconds for nmap to populate the result after the command has been executed.
+
+_This output provides information about the latency and open ports on the scanned host (172.31.86.129 AWS EC2 instance) at the time of the scan initiation._
+
+
+**PROJECT COMPLETED**
